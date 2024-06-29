@@ -1,0 +1,75 @@
+﻿@page "/products/add"
+@page "/products/edit/{id:int}"
+@using Modular.Api.Product
+@using Module.Product
+@inject ProductService ProductService
+@inject NavigationManager NavigationManager
+
+@rendermode InteractiveServer
+
+<h3>@(isEdit ? "Edit Product" : "Add Product")</h3>
+
+<EditForm Model="@product" FormName="Product" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="name">Name</label>
+        <InputText id="name" class="form-control" @bind-Value="product.Name" />
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <InputText id="description" class="form-control" @bind-Value="product.Description" />
+    </div>
+
+    <div class="form-group">
+        <label for="price">Price</label>
+        <InputNumber id="price" class="form-control" @bind-Value="product.Price" />
+    </div>
+
+    <div class="form-group">
+        <label for="stock">Stock</label>
+        <InputNumber id="stock" class="form-control" @bind-Value="product.Stock" />
+    </div>
+    <div class="form-group" style="padding-top: 5px">
+        <button type="submit" class="btn btn-success">@("Save")</button>
+        <button type="button" class="btn btn-secondary" @onclick="GoBack">Cancel</button>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter] 
+    public int? Id { get; set; }
+    
+    private Product product = new Product();
+    
+    private bool isEdit => Id.HasValue;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (isEdit)
+        {
+            product = await ProductService.GetProduct(Id.Value);
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        if (isEdit)
+        {
+            await ProductService.UpdateProduct(product);
+        }
+        else
+        {
+            await ProductService.AddProduct(product);
+        }
+
+        NavigationManager.NavigateTo("/products");
+    }
+
+    private void GoBack()
+    {
+        NavigationManager.NavigateTo("/products");
+    }
+}

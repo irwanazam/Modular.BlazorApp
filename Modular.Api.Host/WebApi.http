@@ -1,0 +1,16 @@
+@WebApi_HostAddress = http://localhost:5148
+
+GET {{WebApi_HostAddress}}/api/products/1
+Accept: application/json
+
+###
+
+POST {{WebApi_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+  "Name": "Product 1",
+  "Description": "Product 1 Description",
+  "Price": 100.00,
+  "Stock": 10
+}
