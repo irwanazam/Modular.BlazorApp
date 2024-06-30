@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Modular.Api.Product\Modular.Api.Product.csproj" />
+    <ProjectReference Include="..\..\Modular.Api.Product\Modular.Api.Catalogs.csproj" />
     <ProjectReference Include="..\Madular.BlazorApp.Client\Modular.BlazorApp.Client.csproj" />
   </ItemGroup>
 

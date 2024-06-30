@@ -1,20 +1,21 @@
 ﻿using FastEndpoints;
 using Microsoft.EntityFrameworkCore;
-using Modular.Api.Product.DataContexts;
-using Modular.Api.Shareds;
+using Modular.Api.Catalogs.Shareds;
+using Modular.Api.Catalogs.DataContexts;
+using Modular.Api.Catalogs.Shareds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Module.Product.Features
+namespace Modular.Api.Catalogs.Features.Products
 {
     public class GetAll : EndpointWithoutRequest<IEnumerable<ProductResponse>>
     {
-        private readonly ProductDbContext _context;
+        private readonly CatalogDbContext _context;
 
-        public GetAll(ProductDbContext context)
+        public GetAll(CatalogDbContext context)
         {
             _context = context;
         }

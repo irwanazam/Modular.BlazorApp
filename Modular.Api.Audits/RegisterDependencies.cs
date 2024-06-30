@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modular.Api.Catalogs
+namespace Modular.Api.Audits
 {
     public static class RegisterDependencies
     {
-        public static void RegisterModuleCatalogs(this IServiceCollection services,string connection)
+        public static void RegisterModuleAudits(this IServiceCollection services,string connection)
         {
-            services.AddDbContext<CatalogDbContext>(options =>
+            services.AddDbContext<AuditDbContext>(options =>
             {
                 options.UseNpgsql(connection);
             });

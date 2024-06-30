@@ -1,7 +1,7 @@
 using FastEndpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Modular.Api.Product;
-
+using Modular.Api.Catalogs;
+using Modular.Api.Audits;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +12,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddRazorPages();
 
 builder.Services.AddFastEndpoints();
-builder.Services.RegisterModuleProduct();
+builder.Services.RegisterModuleCatalogs(builder.Configuration.GetConnectionString("CatalogsConnection"));
+builder.Services.RegisterModuleAudits(builder.Configuration.GetConnectionString("AuditsConnection"));
 
 builder.Services.AddCors(options =>
 {

@@ -1,5 +1,5 @@
-﻿using Modular.Api.Product;
-using Module.Product;
+﻿using Modular.Api.Catalogs.Domains;
+
 
 namespace Modular.BlazorApp.Components.Pages.Products
 {

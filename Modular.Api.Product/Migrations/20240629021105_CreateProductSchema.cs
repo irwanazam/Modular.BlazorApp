@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Modular.Api.Product.Migrations
+namespace Modular.Api.Catalogs.Migrations
 {
     /// <inheritdoc />
     public partial class CreateProductSchema : Migration

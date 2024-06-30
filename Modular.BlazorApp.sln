@@ -3,13 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Products", "Products", "{EC54A4B9-E8A4-4F44-BEA4-7E0223C7754E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalogs", "Catalogs", "{EC54A4B9-E8A4-4F44-BEA4-7E0223C7754E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.BlazorApp", "Modular.BlazorApp\Modular.BlazorApp\Modular.BlazorApp.csproj", "{C23D5188-8913-4BAA-A03B-48EC7CF7C49C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.Api.Host", "Modular.Api.Host\Modular.Api.Host.csproj", "{0F2263D7-CBDD-4EC0-A929-2313F98A757E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.Api.Product", "Modular.Api.Product\Modular.Api.Product.csproj", "{2D6A69F9-A2E2-4FC4-A886-3AD0F8ACD097}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.Api.Catalogs", "Modular.Api.Product\Modular.Api.Catalogs.csproj", "{2D6A69F9-A2E2-4FC4-A886-3AD0F8ACD097}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orders", "Orders", "{39D6A7C1-6328-49A0-842B-6330CD1BDF65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modular.Api.Orders", "Modular.Api.Orders\Modular.Api.Orders.csproj", "{78DAA18E-00A9-4A36-B12B-0799BDA1DD8C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuditLogs", "AuditLogs", "{1F6F7961-5019-43B3-88EA-6733CCF95112}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modular.Api.Audits", "Modular.Api.Audits\Modular.Api.Audits.csproj", "{401DD9AE-1C0A-4F3F-92D9-3DD3D653107B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3AF83B10-4C82-46AF-8D2C-09CFB36BB023}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.md = Readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +42,22 @@ Global
 		{2D6A69F9-A2E2-4FC4-A886-3AD0F8ACD097}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D6A69F9-A2E2-4FC4-A886-3AD0F8ACD097}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D6A69F9-A2E2-4FC4-A886-3AD0F8ACD097}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78DAA18E-00A9-4A36-B12B-0799BDA1DD8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78DAA18E-00A9-4A36-B12B-0799BDA1DD8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78DAA18E-00A9-4A36-B12B-0799BDA1DD8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78DAA18E-00A9-4A36-B12B-0799BDA1DD8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{401DD9AE-1C0A-4F3F-92D9-3DD3D653107B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{401DD9AE-1C0A-4F3F-92D9-3DD3D653107B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{401DD9AE-1C0A-4F3F-92D9-3DD3D653107B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{401DD9AE-1C0A-4F3F-92D9-3DD3D653107B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2D6A69F9-A2E2-4FC4-A886-3AD0F8ACD097} = {EC54A4B9-E8A4-4F44-BEA4-7E0223C7754E}
+		{78DAA18E-00A9-4A36-B12B-0799BDA1DD8C} = {39D6A7C1-6328-49A0-842B-6330CD1BDF65}
+		{401DD9AE-1C0A-4F3F-92D9-3DD3D653107B} = {1F6F7961-5019-43B3-88EA-6733CCF95112}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A174495-5713-4CCA-BCA6-57204324FF80}

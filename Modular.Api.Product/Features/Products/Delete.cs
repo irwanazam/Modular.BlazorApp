@@ -1,18 +1,18 @@
 ﻿using FastEndpoints;
-using Modular.Api.Product.DataContexts;
+using Modular.Api.Catalogs.DataContexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modular.Api.Product.Features
+namespace Modular.Api.Catalogs.Features.Products
 {
     public class DeleteProductEndpoint : EndpointWithoutRequest
     {
-        private readonly ProductDbContext _context;
+        private readonly CatalogDbContext _context;
 
-        public DeleteProductEndpoint(ProductDbContext context)
+        public DeleteProductEndpoint(CatalogDbContext context)
         {
             _context = context;
         }

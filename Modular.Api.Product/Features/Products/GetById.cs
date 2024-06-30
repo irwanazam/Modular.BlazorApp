@@ -1,37 +1,32 @@
 ﻿using FastEndpoints;
-using Modular.Api.Product.DataContexts;
-using Modular.Api.Shareds;
+using Modular.Api.Catalogs.DataContexts;
+using Modular.Api.Catalogs.Shareds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Module.Product.Features
+namespace Modular.Api.Catalogs.Features.Products
 {
-    public class Update : Endpoint<UpdateProductRequest, ProductResponse>
+    public class GetById : EndpointWithoutRequest<ProductResponse>
     {
-        private readonly ProductDbContext _context;
+        private readonly CatalogDbContext _context;
 
-        public Update(ProductDbContext context)
+        public GetById(CatalogDbContext context)
         {
             _context = context;
         }
 
         public override void Configure()
         {
-            Put("/api/products/{id:int}");
+            Get("/api/products/{id:int}");
             AllowAnonymous();
         }
 
-        public override async Task HandleAsync(UpdateProductRequest req, CancellationToken ct)
+        public override async Task HandleAsync(CancellationToken ct)
         {
             var id = Route<int>("id");
-
-            if (id != req.Id || string.IsNullOrEmpty(req.Name) || req.Price <= 0 || req.Stock < 0)
-            {
-                ThrowError("Invalid product data.");
-            }
 
             var product = await _context.Products.FindAsync(new object[] { id }, ct);
 
@@ -40,13 +35,6 @@ namespace Module.Product.Features
                 await SendNotFoundAsync(ct);
                 return;
             }
-
-            product.Name = req.Name;
-            product.Description = req.Description;
-            product.Price = req.Price;
-            product.Stock = req.Stock;
-
-            await _context.SaveChangesAsync(ct);
 
             var response = new ProductResponse
             {
@@ -60,4 +48,6 @@ namespace Module.Product.Features
             await SendOkAsync(response, ct);
         }
     }
+
+
 }

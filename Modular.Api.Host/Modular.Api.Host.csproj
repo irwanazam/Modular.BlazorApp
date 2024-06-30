@@ -23,7 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Modular.Api.Product\Modular.Api.Product.csproj" />
+    <ProjectReference Include="..\Modular.Api.Audits\Modular.Api.Audits.csproj" />
+    <ProjectReference Include="..\Modular.Api.Orders\Modular.Api.Orders.csproj" />
+    <ProjectReference Include="..\Modular.Api.Product\Modular.Api.Catalogs.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modular.Api.Shareds
+namespace Modular.Api.Catalogs.Shareds
 {
     public class CreateProductRequest
     {

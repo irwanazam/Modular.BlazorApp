@@ -3,14 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Modular.Api.Product.DataContexts;
+using Modular.Api.Catalogs.DataContexts;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Modular.Api.Product.Migrations
+namespace Modular.Api.Catalogs.Migrations
 {
-    [DbContext(typeof(ProductDbContext))]
+    [DbContext(typeof(CatalogDbContext))]
     [Migration("20240629021105_CreateProductSchema")]
     partial class CreateProductSchema
     {

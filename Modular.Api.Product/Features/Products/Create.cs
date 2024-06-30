@@ -1,19 +1,20 @@
 ﻿using FastEndpoints;
-using Modular.Api.Product.DataContexts;
-using Modular.Api.Shareds;
+using Modular.Api.Catalogs.Domains;
+using Modular.Api.Catalogs.Shareds;
+using Modular.Api.Catalogs.DataContexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modular.Api.Product.Features
+namespace Modular.Api.Catalogs.Features.Products
 {
     public class Create : Endpoint<CreateProductRequest, ProductResponse>
     {
-        private readonly ProductDbContext _context;
+        private readonly CatalogDbContext _context;
 
-        public Create(ProductDbContext context)
+        public Create(CatalogDbContext context)
         {
             _context = context;
         }
