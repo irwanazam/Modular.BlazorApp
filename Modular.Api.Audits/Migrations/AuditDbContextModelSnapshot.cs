@@ -31,7 +31,7 @@ namespace Modular.Api.Audits.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Entity")
                         .IsRequired()
@@ -41,19 +41,11 @@ namespace Modular.Api.Audits.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("EntityName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("EntityPreviousValue")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("EntityValue")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Event")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Message")
                         .IsRequired()
                         .HasColumnType("text");
 

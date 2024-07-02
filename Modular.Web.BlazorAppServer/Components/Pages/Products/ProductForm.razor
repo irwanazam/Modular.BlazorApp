@@ -1,0 +1,81 @@
+﻿@page "/products/form"
+
+@using Modular.Api.Catalogs.Domains
+
+@inject ProductService ProductService
+@inject NavigationManager NavigationManager
+
+@rendermode InteractiveServer
+
+<h3>Product</h3>
+
+
+<EditForm Model="@Product" OnValidSubmit="@HandleValidSubmit" FormName="product" novalidate>
+    <DataAnnotationsValidator />
+    <FluentValidationSummary />
+
+    <FluentStack Orientation="Orientation.Vertical">
+        <div>
+            <FluentTextField Name="Name" @bind-Value="Product.Name" Label="Name" style="width: 400px;" Required />
+            <FluentValidationMessage For="@(() => Product.Name)" />
+        </div>
+
+       
+         <div>
+            <FluentSelect Name="category" Value="Product.CategoryId" TOption="int" Required Label="Category">
+                <FluentOption Value="">Select category ...</FluentOption>
+                @if (categories is not null)
+                {
+                    @foreach (var category in categories)
+                    {
+                        <FluentOption Value="@category.Id.ToString()">@category.Name</FluentOption>
+                    }
+                }
+            </FluentSelect>
+            <FluentValidationMessage For="@(() => Product.CategoryId.ToString())" />
+        </div>
+        <FluentButton Type="ButtonType.Submit" Appearance="Appearance.Accent">Submit</FluentButton>
+
+    </FluentStack>
+
+</EditForm>
+
+@Product.Name
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+
+    private List<Category>? categories { get; set; }
+
+    [SupplyParameterFromForm]
+    public Product? Product { get; set; }  = new();
+
+    
+    private bool isEdit => Id.HasValue;
+
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+        categories = await ProductService.GetCategoriesAsync();
+       
+        if (isEdit)
+        {
+            Product = await ProductService.GetProductByIdAsync(Id.Value);
+        }
+        // else
+        // {
+        //    Product = new Product { Name = "",  CategoryId=0 , Reviews = new List<ProductReview>() };
+        // }
+        
+
+    }
+
+
+    public void HandleValidSubmit()
+    {
+        Console.WriteLine(Product.Name);
+    }
+    
+}

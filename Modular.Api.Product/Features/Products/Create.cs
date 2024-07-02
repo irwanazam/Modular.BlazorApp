@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Modular.Api.Events.Products;
 
 namespace Modular.Api.Catalogs.Features.Products
 {
@@ -37,10 +38,13 @@ namespace Modular.Api.Catalogs.Features.Products
                 Name = req.Name,
                 Description = req.Description,
                 Price = req.Price,
-                Stock = req.Stock
+                Stock = req.Stock,
+                CategoryId = req.CategoryId,
+                Reviews = new List<ProductReview>()
             };
 
             _context.Products.Add(product);
+
             await _context.SaveChangesAsync(ct);
 
             var response = new ProductResponse
@@ -52,7 +56,11 @@ namespace Modular.Api.Catalogs.Features.Products
                 Stock = product.Stock
             };
 
+            await PublishAsync(new ProductCreated(product.Name, product.Id.ToString(), DateTime.Now));
+
             await SendCreatedAtAsync<GetById>(new { product.Id }, response, cancellation: ct);
         }
     }
+
+
 }

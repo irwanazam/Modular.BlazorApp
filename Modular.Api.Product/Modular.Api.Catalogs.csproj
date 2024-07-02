@@ -28,4 +28,8 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Modular.Api.Events\Modular.Api.Events.csproj" />
+  </ItemGroup>
+
 </Project>

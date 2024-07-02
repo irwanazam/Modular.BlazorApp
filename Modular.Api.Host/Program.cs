@@ -11,9 +11,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRazorPages();
 
-builder.Services.AddFastEndpoints();
+
 builder.Services.RegisterModuleCatalogs(builder.Configuration.GetConnectionString("CatalogsConnection"));
 builder.Services.RegisterModuleAudits(builder.Configuration.GetConnectionString("AuditsConnection"));
+
+builder.Services.AddFastEndpoints();
 
 builder.Services.AddCors(options =>
 {

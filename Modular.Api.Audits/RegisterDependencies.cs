@@ -13,6 +13,7 @@ namespace Modular.Api.Audits
     {
         public static void RegisterModuleAudits(this IServiceCollection services,string connection)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             services.AddDbContext<AuditDbContext>(options =>
             {
                 options.UseNpgsql(connection);
