@@ -20,7 +20,7 @@ namespace Modular.Api.Catalogs.Features.Products
 
         public override void Configure()
         {
-            Get("/api/products/{id:int}");
+            Get("/api/catalogs/products/{id:int}");
             AllowAnonymous();
         }
 

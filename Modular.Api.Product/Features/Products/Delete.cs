@@ -19,7 +19,7 @@ namespace Modular.Api.Catalogs.Features.Products
 
         public override void Configure()
         {
-            Delete("/api/products/{id:int}");
+            Delete("/api/catalogs/products/{id:int}");
             AllowAnonymous();
         }
 

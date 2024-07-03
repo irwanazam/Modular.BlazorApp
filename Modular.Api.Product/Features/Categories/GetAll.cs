@@ -21,7 +21,7 @@ namespace Module.Product.Features.Categories
 
         public override void Configure()
         {
-            Get("/api/categories");
+            Get("/api/catalogs/categories");
             AllowAnonymous();
         }
 

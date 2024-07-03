@@ -20,62 +20,84 @@
             <FluentValidationMessage For="@(() => Product.Name)" />
         </div>
 
-       
-         <div>
-            <FluentSelect Name="category" Value="Product.CategoryId" TOption="int" Required Label="Category">
-                <FluentOption Value="">Select category ...</FluentOption>
-                @if (categories is not null)
-                {
-                    @foreach (var category in categories)
-                    {
-                        <FluentOption Value="@category.Id.ToString()">@category.Name</FluentOption>
-                    }
-                }
-            </FluentSelect>
-            <FluentValidationMessage For="@(() => Product.CategoryId.ToString())" />
+        <div>
+            <FluentTextArea Name="description" Rows=5 Cols=60 @bind-Value="Product.Description" Label="Description (optional)" Required />
+            <FluentValidationMessage For="@(() => Product.Description)" />
         </div>
+
+        <div>
+            <FluentSelect Name="category" Value="Product.CategoryId" TOption="int" Required Label="Category" @onchange="OnCategoryChange">
+                <FluentOption Value="">Select category ...</FluentOption>
+
+                @foreach (var category in categories)
+                {
+                    <FluentOption Value="@category.Id.ToString()">@category.Name</FluentOption>
+                }
+
+            </FluentSelect>
+            @* <FluentValidationMessage For="@(() => Product.CategoryId.ToString())" /> *@
+        </div>
+
+        <div>
+            <FluentNumberField Name="price" @bind-Value="Product.Price" Label="Price" Required />
+            <FluentValidationMessage For="@(() => Product.Price)" />
+        </div>
+
+        <div>
+            <FluentNumberField Name="stock" @bind-Value="Product.Stock" Label="Stock" Required />
+            <FluentValidationMessage For="@(() => Product.Stock)" />
+        </div>
+
         <FluentButton Type="ButtonType.Submit" Appearance="Appearance.Accent">Submit</FluentButton>
 
     </FluentStack>
 
 </EditForm>
 
-@Product.Name
 
 @code {
     [Parameter]
     public int? Id { get; set; }
 
-    private List<Category>? categories { get; set; }
 
     [SupplyParameterFromForm]
-    public Product? Product { get; set; }  = new();
+    public Product? Product { get; set; } = new();
 
-    
+    private List<Category>? categories { get; set; } = new();
+
+
     private bool isEdit => Id.HasValue;
 
-    
+
 
     protected override async Task OnInitializedAsync()
     {
         categories = await ProductService.GetCategoriesAsync();
-       
+
         if (isEdit)
         {
             Product = await ProductService.GetProductByIdAsync(Id.Value);
         }
-        // else
-        // {
-        //    Product = new Product { Name = "",  CategoryId=0 , Reviews = new List<ProductReview>() };
-        // }
-        
+        else
+        {
+            Product = new();
+        }
+
 
     }
 
-
-    public void HandleValidSubmit()
+    private void OnCategoryChange(ChangeEventArgs e)
     {
-        Console.WriteLine(Product.Name);
+        if (int.TryParse(e.Value.ToString(), out var categoryId))
+        {
+            Product.CategoryId = categoryId;
+        }
     }
-    
+
+    public async Task HandleValidSubmit()
+    {
+        await ProductService.CreateProductAsync(Product);
+
+    }
+
 }

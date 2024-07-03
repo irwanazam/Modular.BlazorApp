@@ -21,7 +21,7 @@ namespace Modular.Api.Catalogs.Features.Products
 
         public override void Configure()
         {
-            Put("/api/products/{id:int}");
+            Put("/api/catalogs/products/{id:int}");
             AllowAnonymous();
         }
 

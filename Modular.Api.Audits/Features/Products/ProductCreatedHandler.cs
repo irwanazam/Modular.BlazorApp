@@ -14,14 +14,9 @@ namespace Modular.Api.Audits.Features.Products
 {
     public class ProductCreatedHandler : IEventHandler<ProductCreated>
     {
-        public AuditDbContext Context { get; }
-
-        //public ProductCreatedHandler(AuditDbContext context)
-        //{
-        //    Context = context;
-        //}
-
+        
         private readonly IServiceScopeFactory _scopeFactory;
+
         private readonly ILogger<ProductCreatedHandler> _logger;
 
         public ProductCreatedHandler(IServiceScopeFactory scopeFactory, ILogger<ProductCreatedHandler> logger)
@@ -46,7 +41,7 @@ namespace Modular.Api.Audits.Features.Products
                 EntityId = eventModel.EntityId,
                 User = "System",
                 Event = "ProductCreated",
-                Message = $"Product {eventModel.Name} created at {eventModel.EventDate}"
+                Message = $"Product - {eventModel.Name} created at {eventModel.EventDate}"
             });
 
             await context.SaveChangesAsync(ct);

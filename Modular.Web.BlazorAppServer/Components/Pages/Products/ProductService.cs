@@ -13,17 +13,17 @@ namespace Modular.Web.BlazorAppServer.Components.Pages.Products
 
         public async Task<IEnumerable<Product>> GetProductsAsync()
         {
-            return await _httpClient.GetFromJsonAsync<IEnumerable<Product>>("api/products");
+            return await _httpClient.GetFromJsonAsync<IEnumerable<Product>>("api/catalogs/products");
         }
 
         public async Task<Product> GetProductByIdAsync(int id)
         {
-            return await _httpClient.GetFromJsonAsync<Product>($"api/products/{id}");
+            return await _httpClient.GetFromJsonAsync<Product>($"api/catalogs/products/{id}");
         }
 
         public async Task CreateProductAsync(Product product)
         {
-            await _httpClient.PostAsJsonAsync("api/products", product);
+            await _httpClient.PostAsJsonAsync("api/catalogs/products", product);
         }
 
         public async Task UpdateProductAsync(Product product)
@@ -33,13 +33,13 @@ namespace Modular.Web.BlazorAppServer.Components.Pages.Products
 
         public async Task DeleteProductAsync(int id)
         {
-            await _httpClient.DeleteAsync($"api/products/{id}");
+            await _httpClient.DeleteAsync($"api/catalogs/products/{id}");
         }
 
         public async Task<List<Category>> GetCategoriesAsync()
         {
-            var response = await _httpClient.GetAsync("api/categories");
-            //response.EnsureSuccessStatusCode();
+            var response = await _httpClient.GetAsync("api/catalogs/categories");
+            response.EnsureSuccessStatusCode();
 
             return await response.Content.ReadFromJsonAsync<List<Category>>();
         }
